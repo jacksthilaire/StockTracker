@@ -3,10 +3,12 @@ import time
 from urllib import request
 import DBManage
 
+# create DB unless already created
 try:
     DBManage.createDB()
 except:
     print("DB created")
+    
 def find_data(stock):
     # takes a stock ticker and scrapes data from yahoo finance
 
