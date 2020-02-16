@@ -3,7 +3,10 @@ import time
 from urllib import request
 import DBManage
 
-
+try:
+    DBManage.createDB()
+except:
+    print("DB created")
 def find_data(stock):
     # takes a stock ticker and scrapes data from yahoo finance
 
@@ -48,7 +51,7 @@ def find_data(stock):
 # main program loop
 while True:
     # give the user a choice to view the current list, and see all of the data, or edit the stock list
-    choice = input("'V': view stock list, 'E': edit stock list")
+    choice = input("'V': view stock list, 'E': edit stock list, 'S': single ticker lookup")
 
     # view list, retreive from DB, and find data if not null
     if choice == 'V':
@@ -73,3 +76,9 @@ while True:
             DBManage.delDB(ticker)
         else:
             print("Error, option not available")
+
+    # single stock lookup
+    elif choice == 'S':
+        ticker = input("Enter stock symbol: ")
+        find_data(ticker)
+
